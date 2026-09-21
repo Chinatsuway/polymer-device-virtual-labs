@@ -76,7 +76,7 @@ def main():
         print(f"[L3] feature: {f['sign']} amplitude {f['amplitude']:+.4f} at "
               f"({f['x']:+.2f}, {f['y']:+.2f}) probe pitches")
     print(f"[L3] resolution = {l3['resolution_probe_pitch']:.2f} probe pitches; "
-          f"detection limit d95 = {l3['detection_limit']:.4f}")
+          f"detection limit d95 = {l3['detection_limit']:.3e}")
     if args.spec is None:
         print("[L3] WARNING: --spec not given; pass/fail left null until the "
               "Session 3 specification is announced")

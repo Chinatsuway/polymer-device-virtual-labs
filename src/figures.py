@@ -16,11 +16,11 @@ def fig_l1(l1, out_path):
         cross = np.interp(level, C, EF)
         ax.plot(cross, level, "s", color="tab:red")
         ax.annotate(f"C={level} at {cross:.3f} eV", (cross, level),
-                    textcoords="offset points", xytext=(6, 6), fontsize=8)
+                    textcoords="offset points", xytext=(6, -14), fontsize=8)
     ax.axvline(l1["EF_op_eV"], ls=":", color="tab:green")
-    ax.annotate(f"operating point {l1['EF_op_eV']:.4f} eV\nC={l1['correction_factor']:.3f}",
+    ax.annotate(f"operating point {l1['EF_op_eV']:.4f} eV, C={l1['correction_factor']:.3f}",
                 (l1["EF_op_eV"], l1["correction_factor"]),
-                textcoords="offset points", xytext=(8, -18), fontsize=8)
+                textcoords="offset points", xytext=(10, 10), fontsize=8)
     ax.set_xlabel("E_F (eV)")
     ax.set_ylabel("correction factor C")
     ax.legend(fontsize=8)

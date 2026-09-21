@@ -75,7 +75,7 @@ def find_features(m_map):
             visited[i, j] = True
             pixels.append((i, j))
             stack += [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]
-        amp = float(sign * m_map[i0, j0])
+        amp = float(m_map[i0, j0])  # signed map value at the extremum
         features.append({
             "sign": label,
             "x": float(PIXEL_CENTRES[j0]),
