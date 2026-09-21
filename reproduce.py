@@ -129,6 +129,8 @@ def main():
     fig_dir = Path(args.figures_dir)
     fig_dir.mkdir(exist_ok=True)
     figures.fig_l1(l1, fig_dir / "L1_correction_sweep.png")
+    figures.fig_l2_raw(data["l2_data"], l2["zero_crossing_bracket"],
+                       fig_dir / "L2_raw_repeats.png")
     figures.fig_l2_model(l2, fig_dir / "L2_model_fit.png")
     figures.fig_l2_trajectory(l2, fig_dir / "L2_trajectory.png")
     figures.fig_l3_map(l3, fig_dir / "L3_map.png")

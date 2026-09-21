@@ -6,6 +6,29 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def fig_l2_raw(l2_data, bracket, out_path):
+    """Three raw repeats per index, with the R_H sign-change bracket marked."""
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6, 6), sharex=True)
+    for rep, grp in l2_data.groupby("repeat"):
+        ax1.plot(grp["measurement_index"], grp["R_H_raw"], "o", ms=2.5,
+                 alpha=0.7, label=f"repeat {rep}")
+        ax2.plot(grp["measurement_index"], grp["R_xx_raw"], "o", ms=2.5,
+                 alpha=0.7, label=f"repeat {rep}")
+    ax1.axhline(0, lw=0.6, color="grey")
+    for ax in (ax1, ax2):
+        ax.axvspan(bracket[0], bracket[1], color="tab:red", alpha=0.15)
+    ax1.annotate(f"R_H sign-change bracket: {bracket[0]}-{bracket[1]}",
+                 (bracket[0], 0), textcoords="offset points", xytext=(6, 10),
+                 fontsize=8, color="tab:red")
+    ax1.set_ylabel("R_H raw")
+    ax2.set_ylabel("R_xx raw")
+    ax2.set_xlabel("measurement index")
+    ax1.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=200)
+    plt.close(fig)
+
+
 def fig_l1(l1, out_path):
     EF = l1["sweep"]["EF_eV"]
     C = l1["sweep"]["C"]

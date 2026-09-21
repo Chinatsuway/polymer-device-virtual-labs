@@ -18,7 +18,8 @@ ROOT = Path(__file__).resolve().parent.parent
 
 CONTENTS = {
     "L1": ["results.json", "figures/L1_correction_sweep.png"],
-    "L2": ["results.json", "figures/L2_model_fit.png", "figures/L2_trajectory.png"],
+    "L2": ["results.json", "figures/L2_model_fit.png", "figures/L2_trajectory.png",
+           "figures/L2_raw_repeats.png"],
     "L3": ["results.json", "figures/L3_map.png", "figures/L3_method.png"],
 }
 
