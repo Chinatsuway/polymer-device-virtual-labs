@@ -118,8 +118,9 @@ def main():
     diagnostics = {
         "L1": {k: v for k, v in l1.items() if k != "sweep"},
         "L2": {k: v for k, v in l2.items()
-               if k not in ("model_curve", "EF_grid", "EF_band_eV", "RH_norm", "Rs_norm",
-                            "RH_std", "Rs_std", "measurement_index", "EF_trajectory_eV")},
+               if k not in ("model_curve", "model_curve_cone", "EF_grid", "EF_band_eV",
+                            "RH_norm", "Rs_norm", "RH_std", "Rs_std",
+                            "measurement_index", "EF_trajectory_eV")},
         "L2_EF_band_eV_lo": list(map(float, l2["EF_band_eV"]["lo"])),
         "L2_EF_band_eV_hi": list(map(float, l2["EF_band_eV"]["hi"])),
         "L3": {k: v for k, v in l3.items() if k not in ("map_2d", "resolution_detail")},
@@ -132,6 +133,7 @@ def main():
     figures.fig_l2_raw(data["l2_data"], l2["zero_crossing_bracket"],
                        fig_dir / "L2_raw_repeats.png")
     figures.fig_l2_model(l2, fig_dir / "L2_model_fit.png")
+    figures.fig_l2_curves(l2, fig_dir / "L2_model_curves.png")
     figures.fig_l2_trajectory(l2, fig_dir / "L2_trajectory.png")
     figures.fig_l3_map(l3, fig_dir / "L3_map.png")
     figures.fig_l3_method(l3, fig_dir / "L3_method.png")

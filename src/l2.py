@@ -178,6 +178,7 @@ def run_l2(l2_data, l2_meta, c, seed=12345, n_replicates=200):
         "RH_std": RH_std, "Rs_std": Rs_std,
         "wing_loglog_slope": float(slope),
         "model_curve": lib[model_key],
+        "model_curve_cone": lib[("cone", 0.0)],
         "EF_grid": EF_grid,
         "n_replicates": n_replicates,
         "seed": seed,

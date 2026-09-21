@@ -68,6 +68,32 @@ def fig_l2_model(l2, out_path):
     plt.close(fig)
 
 
+def fig_l2_curves(l2, out_path):
+    """R_H(E_F) and R_s(E_F) line plots for the cone and hard-gap models,
+    with measured points placed at their assigned Fermi levels."""
+    EF = l2["EF_grid"]
+    cone = l2["model_curve_cone"]
+    sel = l2["model_curve"]
+    EF_data = np.array(l2["EF_trajectory_eV"])
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6, 7), sharex=True)
+    for ax, j, name in ((ax1, 0, "R_H / max|R_H|"), (ax2, 1, "R_xx / max R_xx")):
+        ax.plot(EF, cone[:, j], "--", lw=1.2, color="tab:blue",
+                label="cone (gapless)")
+        ax.plot(EF, sel[:, j], "-", lw=1.2, color="tab:red",
+                label=f"hard gap, E_g/kT={l2['Eg_kT']}")
+        data = l2["RH_norm"] if j == 0 else l2["Rs_norm"]
+        ax.plot(EF_data, data, "o", ms=3.5, color="black", alpha=0.6,
+                label="measured at assigned E_F")
+        ax.axvline(0, lw=0.5, color="grey")
+        ax.set_ylabel(name)
+        ax.legend(fontsize=8)
+    ax1.axhline(0, lw=0.5, color="grey")
+    ax2.set_xlabel("E_F (eV)")
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=200)
+    plt.close(fig)
+
+
 def fig_l2_trajectory(l2, out_path):
     idx = l2["measurement_index"]
     EF = np.array(l2["EF_trajectory_eV"])
