@@ -20,7 +20,9 @@ python reproduce.py --data-dir data/regular_G06 --spec <THRESHOLD>
 ```
 
 - Writes `results.json` (schema of the supplied `results_template.json`),
-  `diagnostics.json`, and `figures/*.png`.
+  `diagnostics.json`, and `figures/*.png`. These are build artifacts: they are
+  git-ignored and regenerated at the current HEAD, so `pipeline_commit` always
+  matches the commit that produced them.
 - `--spec` is the L3 pass/fail threshold announced in Session 3; without it the
   pass/fail fields stay null and a warning is printed.
 - `--seed` (default 12345) controls the L2 bootstrap and L3 noise ensemble.
